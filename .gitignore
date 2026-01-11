@@ -1,0 +1,22 @@
+# Dependencies
+/vendor/
+
+# Composer
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.phpunit.result.cache
+/coverage/
+
+# Logs
+*.log

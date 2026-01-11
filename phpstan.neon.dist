@@ -1,0 +1,75 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 8
+
+    paths:
+        - src/
+
+    bootstrapFiles:
+        - tests/bootstrap.php
+
+    # Ignore WordPress globals and functions
+    ignoreErrors:
+        # Ignore missing type hints (for WordPress compatibility)
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
+
+        # WordPress functions that PHPStan doesn't know about
+        - '#Function (add_action|add_filter|remove_action|remove_filter|apply_filters|do_action|get_option|update_option|delete_option) not found#'
+        - '#Function (wp_die|wp_redirect|wp_safe_redirect|home_url|admin_url|plugin_dir_path|plugin_dir_url|plugin_basename) not found#'
+        - '#Function (sanitize_title_with_dashes|sanitize_text_field|esc_html|esc_attr|esc_url|wp_kses_post) not found#'
+        - '#Function (is_admin|is_user_logged_in|current_user_can|get_current_screen) not found#'
+        - '#Function (register_activation_hook|register_deactivation_hook|register_setting|add_settings_section|add_settings_field) not found#'
+        - '#Function (settings_fields|do_settings_sections|submit_button|add_settings_error|get_settings_errors) not found#'
+        - '#Function (wp_enqueue_style|wp_enqueue_script|wp_localize_script) not found#'
+        - '#Function (__) not found#'
+        - '#Function (esc_html__|esc_attr__) not found#'
+        - '#Function (load_plugin_textdomain|get_admin_page_title) not found#'
+        - '#Function (add_options_page|add_menu_page) not found#'
+        - '#Function (get_transient|set_transient|delete_transient) not found#'
+        - '#Function (nocache_headers|status_header|get_404_template) not found#'
+        - '#Function (parse_url|filter_var|strpos|str_replace) invoked with#'
+        - '#Function (trailingslashit|untrailingslashit|get_site_option|update_site_option) not found#'
+        - '#Function checked not found#'
+
+        # WordPress constants
+        - '#Constant (ABSPATH|WP_CONTENT_DIR|DOING_AJAX|DOING_CRON|WP_CLI|REST_REQUEST) not found#'
+        - '#Constant (HOUR_IN_SECONDS|CORELINE_VERSION|CORELINE_PLUGIN_DIR|CORELINE_PLUGIN_URL|CORELINE_PLUGIN_BASENAME) not found#'
+        - '#Constant FILTER_VALIDATE_IP not found#'
+
+        # WordPress classes
+        - '#Class (WP|WP_Error|WP_Query) not found#'
+
+        # Acceptable undefined variables in WordPress context
+        - '#Variable \$pagenow might not be defined#'
+        - '#Variable \$wpdb might not be defined#'
+        - '#Variable \$wp_query might not be defined#'
+
+        # Allow mixed types for WordPress flexibility
+        - '#Method .* has parameter .* with no type specified#'
+        - '#Method .* return type has no value type specified#'
+
+    excludePaths:
+        - vendor/
+        - tests/
+        - node_modules/
+
+    # Report only actual problems
+    reportUnmatchedIgnoredErrors: false
+
+    # WordPress-specific
+    stubFiles:
+        # You can add WordPress stubs here if needed
+
+    # Treat WordPress globals as dynamic
+    dynamicConstantNames:
+        - ABSPATH
+        - WP_DEBUG
+        - DOING_AJAX
+        - DOING_CRON
+        - WP_CLI
+        - REST_REQUEST

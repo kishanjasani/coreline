@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Coreline" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+    <description>Coreline WordPress Coding Standards</description>
+
+    <!-- What to scan -->
+    <file>.</file>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/test/*</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
+    <exclude-pattern>test/*</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+    <exclude-pattern>*.md</exclude-pattern>
+    <exclude-pattern>*.txt</exclude-pattern>
+    <exclude-pattern>*.json</exclude-pattern>
+    <exclude-pattern>*.xml</exclude-pattern>
+
+    <!-- Only scan PHP files -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Show progress -->
+    <arg value="ps"/>
+
+    <!-- Strip the filepaths down to the relevant bit -->
+    <arg name="basepath" value="./"/>
+
+    <!-- Check up to 20 files simultaneously -->
+    <arg name="parallel" value="20"/>
+
+    <!-- Show sniff codes in all reports -->
+    <arg value="ns"/>
+
+    <!-- Use colors in output -->
+    <arg name="colors"/>
+
+    <!-- Include the WordPress-Extra standard -->
+    <rule ref="WordPress-Extra">
+        <!-- Allow short array syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+
+        <!-- We use PSR-4 autoloading -->
+        <exclude name="WordPress.Files.FileName"/>
+
+        <!-- Allow multiple classes in one file for related classes -->
+        <exclude name="Generic.Files.OneObjectStructurePerFile"/>
+
+        <!-- Allow camelCase for method, property, and variable names (PSR standard) -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
+
+        <!-- Allow inline comments without punctuation -->
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+
+        <!-- Allow regular condition checks (not Yoda conditions) for readability -->
+        <exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+    </rule>
+
+    <!-- Include WordPress-Docs standard -->
+    <rule ref="WordPress-Docs">
+        <!-- Allow @since tags without version for internal use -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+    </rule>
+
+    <!-- Include WordPress VIP Go standards -->
+    <rule ref="WordPress-VIP-Go">
+        <!-- Allow direct database queries with $wpdb (we use prepare()) -->
+        <exclude name="WordPress.DB.DirectDatabaseQuery"/>
+
+        <!-- Allow filesystem functions (needed for plugin activation) -->
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents"/>
+
+        <!-- Allow flush_rewrite_rules in activation/deactivation hooks -->
+        <exclude name="WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules"/>
+
+        <!-- Allow $_SERVER variable use (we validate with filter_var) -->
+        <exclude name="WordPressVIPMinimum.Variables.ServerVariables.UserControlledHeaders"/>
+    </rule>
+
+    <!-- Check for PHP cross-version compatibility -->
+    <config name="testVersion" value="7.4-"/>
+    <rule ref="PHPCompatibilityWP"/>
+
+    <!-- WordPress specific rules -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="coreline"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Verify that everything in the global namespace is prefixed -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="coreline"/>
+                <element value="Coreline"/>
+                <element value="CORELINE"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Enforce strict types -->
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
+
+    <!-- Ensure proper nonce verification -->
+    <rule ref="WordPress.Security.NonceVerification"/>
+
+    <!-- Ensure output is escaped -->
+    <rule ref="WordPress.Security.EscapeOutput"/>
+
+    <!-- Check for SQL injection vulnerabilities -->
+    <rule ref="WordPress.DB.PreparedSQL"/>
+
+    <!-- Validate sanitization -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+
+    <!-- Allow longer line length for readability -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="150"/>
+        </properties>
+    </rule>
+
+    <!-- WordPress hook documentation -->
+    <!-- <rule ref="WordPress.WP.GlobalVariablesOverride"/> -->
+
+    <!-- Disallow extract() for security -->
+    <rule ref="WordPress.PHP.DontExtract"/>
+
+    <!-- Discourage goto -->
+    <rule ref="Generic.PHP.DiscourageGoto"/>
+
+</ruleset>
