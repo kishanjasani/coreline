@@ -1,0 +1,58 @@
+# Development and build files
+/.git
+/.github
+/node_modules
+/vendor
+
+# Test files
+/tests
+/phpunit.xml
+/phpunit.xml.dist
+/.phpunit.result.cache
+
+# Coding standards
+/phpcs.xml
+/phpcs.xml.dist
+/phpstan.neon
+/phpstan.neon.dist
+
+# Composer files (keep composer.json for plugin info, exclude dev files)
+/composer.lock
+
+# Documentation
+/docs
+/SETUP-STANDARDS.md
+/PLUGIN-CHECK-NOTES.md
+/CODING-STANDARDS.md
+
+# Version control
+/.gitignore
+/.gitattributes
+
+# CI/CD
+/.travis.yml
+/.gitlab-ci.yml
+/Jenkinsfile
+
+# IDE files
+/.idea
+/.vscode
+/.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Build/deploy files
+/.distignore
+/.deployignore
+/Gruntfile.js
+/Gulpfile.js
+/package.json
+/package-lock.json
+/webpack.config.js
+
+# Misc
+*.log
+*.zip
+*.tar.gz
+/tmp
+/temp
