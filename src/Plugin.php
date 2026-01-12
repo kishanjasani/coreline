@@ -13,6 +13,7 @@ use Coreline\Contracts\FeatureInterface;
 use Coreline\Features\DisableEmojis;
 use Coreline\Features\DisablePingbacks;
 use Coreline\Features\HideWordPressVersion;
+use Coreline\Features\HidePHPVersion;
 use Coreline\Features\HotlinkProtection;
 use Coreline\Features\CustomLoginUrl;
 use Coreline\Admin\Settings;
@@ -71,6 +72,7 @@ final class Plugin {
 		$features = array(
 			new DisableEmojis(),
 			new HideWordPressVersion(),
+			new HidePHPVersion(),
 			new CustomLoginUrl(),
 			new HotlinkProtection(),
 			new DisablePingbacks(),

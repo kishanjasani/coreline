@@ -42,6 +42,7 @@ final class Settings {
 	private const DEFAULTS = array(
 		'disable_emojis' => true,
 		'hide_wp_version' => true,
+		'hide_php_version' => true,
 		'custom_login_url_enabled' => true,
 		'custom_login_slug' => 'secure-login',
 		'hotlink_protection' => true,
@@ -132,6 +133,19 @@ final class Settings {
 			)
 		);
 
+		// Hide PHP Version
+		add_settings_field(
+			'hide_php_version',
+			__( 'Hide PHP Version', 'coreline' ),
+			array( $this, 'renderCheckboxField' ),
+			self::PAGE_SLUG,
+			'coreline_general',
+			array(
+				'name' => 'hide_php_version',
+				'label' => __( 'Remove PHP version from HTTP headers', 'coreline' ),
+			)
+		);
+
 		// Custom Login URL Section
 		add_settings_section(
 			'coreline_login',
@@ -219,6 +233,7 @@ final class Settings {
 		$checkboxes = array(
 			'disable_emojis',
 			'hide_wp_version',
+			'hide_php_version',
 			'custom_login_url_enabled',
 			'hotlink_protection',
 			'disable_pingbacks',

@@ -27,7 +27,7 @@ final class HideWordPressVersion extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name = 'Hide WordPress Version';
+		$this->name        = 'Hide WordPress Version';
 		$this->description = 'Remove WordPress version numbers from HTML and RSS feeds for security';
 		$this->settingsKey = 'hide_wp_version';
 
