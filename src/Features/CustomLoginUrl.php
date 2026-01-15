@@ -63,12 +63,30 @@ final class CustomLoginUrl extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name        = __( 'Custom Login URL', 'coreline' );
-		$this->description = __( 'Change wp-login.php URL to prevent automated brute-force attacks', 'coreline' );
+		$this->name        = 'Custom Login URL';
+		$this->description = 'Change wp-login.php URL to prevent automated brute-force attacks';
 		$this->settingsKey = 'custom_login_url_enabled';
 		$this->loginSlug   = $this->getLoginSlug();
 
 		parent::__construct();
+	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedName(): string {
+		return __( 'Custom Login URL', 'coreline' );
+	}
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedDescription(): string {
+		return __( 'Change wp-login.php URL to prevent automated brute-force attacks', 'coreline' );
 	}
 
 	/**

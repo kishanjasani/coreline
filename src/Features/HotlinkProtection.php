@@ -28,11 +28,29 @@ final class HotlinkProtection extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name        = __( 'Hotlink Protection', 'coreline' );
-		$this->description = __( 'Prevent other sites from hotlinking your images', 'coreline' );
+		$this->name        = 'Hotlink Protection';
+		$this->description = 'Prevent other sites from hotlinking your images';
 		$this->settingsKey = 'hotlink_protection';
 
 		parent::__construct();
+	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedName(): string {
+		return __( 'Hotlink Protection', 'coreline' );
+	}
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedDescription(): string {
+		return __( 'Prevent other sites from hotlinking your images', 'coreline' );
 	}
 
 	/**

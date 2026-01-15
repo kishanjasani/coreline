@@ -27,11 +27,29 @@ final class HideWordPressVersion extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name        = __( 'Hide WordPress Version', 'coreline' );
-		$this->description = __( 'Remove WordPress version numbers from HTML and RSS feeds for security', 'coreline' );
+		$this->name        = 'Hide WordPress Version';
+		$this->description = 'Remove WordPress version numbers from HTML and RSS feeds for security';
 		$this->settingsKey = 'hide_wp_version';
 
 		parent::__construct();
+	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedName(): string {
+		return __( 'Hide WordPress Version', 'coreline' );
+	}
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedDescription(): string {
+		return __( 'Remove WordPress version numbers from HTML and RSS feeds for security', 'coreline' );
 	}
 
 	/**

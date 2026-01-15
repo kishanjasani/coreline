@@ -27,11 +27,29 @@ final class HidePHPVersion extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name        = __( 'Hide PHP Version', 'coreline' );
-		$this->description = __( 'Remove PHP version from HTTP headers for security', 'coreline' );
+		$this->name        = 'Hide PHP Version';
+		$this->description = 'Remove PHP version from HTTP headers for security';
 		$this->settingsKey = 'hide_php_version';
 
 		parent::__construct();
+	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedName(): string {
+		return __( 'Hide PHP Version', 'coreline' );
+	}
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedDescription(): string {
+		return __( 'Remove PHP version from HTTP headers for security', 'coreline' );
 	}
 
 	/**

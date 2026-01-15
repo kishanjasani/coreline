@@ -16,6 +16,7 @@ use Coreline\Features\HideWordPressVersion;
 use Coreline\Features\HidePHPVersion;
 use Coreline\Features\HotlinkProtection;
 use Coreline\Features\CustomLoginUrl;
+use Coreline\Features\CustomLoginLogo;
 use Coreline\Admin\Settings;
 
 /**
@@ -74,6 +75,7 @@ final class Plugin {
 			new HideWordPressVersion(),
 			new HidePHPVersion(),
 			new CustomLoginUrl(),
+			new CustomLoginLogo(),
 			new HotlinkProtection(),
 			new DisablePingbacks(),
 		);

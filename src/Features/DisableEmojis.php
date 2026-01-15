@@ -27,11 +27,29 @@ final class DisableEmojis extends AbstractFeature {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->name        = __( 'Disable Emojis', 'coreline' );
-		$this->description = __( 'Remove WordPress emoji detection scripts to improve performance', 'coreline' );
+		$this->name        = 'Disable Emojis';
+		$this->description = 'Remove WordPress emoji detection scripts to improve performance';
 		$this->settingsKey = 'disable_emojis';
 
 		parent::__construct();
+	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedName(): string {
+		return __( 'Disable Emojis', 'coreline' );
+	}
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * @return string
+	 */
+	protected function getTranslatedDescription(): string {
+		return __( 'Remove WordPress emoji detection scripts to improve performance', 'coreline' );
 	}
 
 	/**

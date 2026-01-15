@@ -52,6 +52,22 @@ abstract class AbstractFeature implements FeatureInterface {
 	 */
 	public function __construct() {
 		$this->enabled = $this->shouldEnable();
+
+		// Load translated strings on init when translations are available.
+		add_action( 'init', array( $this, 'loadTranslatedStrings' ), 1 );
+	}
+
+	/**
+	 * Load translated strings for name and description.
+	 *
+	 * Called on init action when translations are properly loaded.
+	 * Each child class provides the actual translation strings.
+	 *
+	 * @return void
+	 */
+	public function loadTranslatedStrings(): void {
+		$this->name        = $this->getTranslatedName();
+		$this->description = $this->getTranslatedDescription();
 	}
 
 	/**
@@ -120,6 +136,24 @@ abstract class AbstractFeature implements FeatureInterface {
 		// Fallback to default enabled.
 		return true;
 	}
+
+	/**
+	 * Get translated feature name.
+	 *
+	 * Child classes must implement this with proper translation string.
+	 *
+	 * @return string
+	 */
+	abstract protected function getTranslatedName(): string;
+
+	/**
+	 * Get translated feature description.
+	 *
+	 * Child classes must implement this with proper translation string.
+	 *
+	 * @return string
+	 */
+	abstract protected function getTranslatedDescription(): string;
 
 	/**
 	 * Register WordPress hooks.

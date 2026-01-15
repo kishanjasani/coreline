@@ -45,6 +45,7 @@ final class Settings {
 		'hide_php_version'         => true,
 		'custom_login_url_enabled' => true,
 		'custom_login_slug'        => 'secure-login',
+		'custom_login_logo'        => true,
 		'hotlink_protection'       => true,
 		'disable_pingbacks'        => true,
 	);
@@ -185,6 +186,19 @@ final class Settings {
 			)
 		);
 
+		// Custom Login Logo.
+		add_settings_field(
+			'custom_login_logo',
+			__( 'Custom Login Logo', 'coreline' ),
+			array( $this, 'renderCheckboxField' ),
+			self::PAGE_SLUG,
+			'coreline_login',
+			array(
+				'name'  => 'custom_login_logo',
+				'label' => __( 'Replace WordPress logo with your site logo or title', 'coreline' ),
+			)
+		);
+
 		// Protection Features Section.
 		add_settings_section(
 			'coreline_protection',
@@ -235,6 +249,7 @@ final class Settings {
 			'hide_wp_version',
 			'hide_php_version',
 			'custom_login_url_enabled',
+			'custom_login_logo',
 			'hotlink_protection',
 			'disable_pingbacks',
 		);
