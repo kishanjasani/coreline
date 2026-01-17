@@ -37,7 +37,7 @@ msgstr ""
 
 #. Author URI of the plugin
 #: coreline.php
-msgid "https://kishanjasani.com"
+msgid "https://kishanjasani.in"
 msgstr ""
 
 #: src/Admin/Settings.php:78
