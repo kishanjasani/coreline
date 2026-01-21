@@ -9,6 +9,8 @@ jobs:
   tag:
     name: New tag
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,12 +19,6 @@ jobs:
         run: |
           composer install --no-dev --optimize-autoloader
           composer dump-autoload --optimize --no-dev
-
-      - name: Verify vendor folder
-        run: |
-          echo "Checking if vendor folder exists..."
-          ls -la vendor/
-          echo "Vendor folder contents verified"
 
       - name: WordPress Plugin Deploy
         id: deploy
@@ -34,17 +30,10 @@ jobs:
 
       - name: Create distribution zip
         run: |
-          echo "Creating zip file with vendor folder..."
           cd ${{github.workspace}}
           rsync -rc --exclude-from=".distignore" "./" "/tmp/coreline"
           cd /tmp
           zip -r ${{github.workspace}}/coreline.zip coreline
-          echo "Zip file created"
-
-      - name: Verify zip contents
-        run: |
-          echo "Checking zip file contents..."
-          unzip -l ${{github.workspace}}/coreline.zip | grep vendor && echo "✓ Vendor folder found in zip!" || echo "WARNING: vendor folder not found in zip!"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
