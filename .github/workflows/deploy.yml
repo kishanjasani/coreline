@@ -27,17 +27,24 @@ jobs:
       - name: WordPress Plugin Deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
-        with:
-          generate-zip: true
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: coreline
 
+      - name: Create distribution zip
+        run: |
+          echo "Creating zip file with vendor folder..."
+          cd ${{github.workspace}}
+          rsync -rc --exclude-from=".distignore" "./" "/tmp/coreline"
+          cd /tmp
+          zip -r ${{github.workspace}}/coreline.zip coreline
+          echo "Zip file created"
+
       - name: Verify zip contents
         run: |
           echo "Checking zip file contents..."
-          unzip -l ${{github.workspace}}/${{ github.event.repository.name }}.zip | grep vendor || echo "WARNING: vendor folder not found in zip!"
+          unzip -l ${{github.workspace}}/coreline.zip | grep vendor && echo "✓ Vendor folder found in zip!" || echo "WARNING: vendor folder not found in zip!"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
