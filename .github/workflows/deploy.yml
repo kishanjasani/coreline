@@ -9,8 +9,6 @@ jobs:
   tag:
     name: New tag
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,14 +28,8 @@ jobs:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: coreline
 
-      - name: Upload Release Asset
-        uses: actions/upload-artifact@v3
-        with:
-          name: plugin-zip
-          path: ${{github.workspace}}/${{ github.event.repository.name }}.zip
-
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v1
         with:
           files: ${{github.workspace}}/${{ github.event.repository.name }}.zip
           fail_on_unmatched_files: false
