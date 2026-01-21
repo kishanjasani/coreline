@@ -4,7 +4,7 @@ Tags: security, hardening, performance, login, optimization
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,13 @@ Absolutely! Coreline follows WordPress VIP Go coding standards and is production
 
 
 == Changelog ==
+
+= 0.1.2 =
+* Fix deployment workflow and vendor folder inclusion
+* Update GitHub Actions for proper releases
+
+= 0.1.1 =
+* Improve deployment process
 
 = 0.1.0 =
 * Initial release
