@@ -3,7 +3,7 @@
  * Plugin Name: Coreline
  * Plugin URI: https://github.com/kishanjasani/coreline
  * Description: Essential hardening and cleanup for every WordPress site.
- * Version: 0.1.2
+ * Version: 0.1.3
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Tested up to: 6.9
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Define plugin constants.
-define( 'CORELINE_VERSION', '0.1.2' );
+define( 'CORELINE_VERSION', '0.1.3' );
 define( 'CORELINE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CORELINE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'CORELINE_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
