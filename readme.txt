@@ -1,6 +1,6 @@
 === Coreline ===
 Contributors: kishanjasani
-Tags: security, hardening, performance, login, optimization
+Tags: security, performance, login, optimization
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
